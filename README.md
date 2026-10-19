@@ -12,7 +12,7 @@
 - filename: 스트링으로 받음. 파일 이름임. 뒤에 자동으로 .wav가 붙어서 저장됨
 - stereo_data: numpy.ndarray형이 들어감. 위의 .generate_sin()로 만든애가 들어갈 수 있음
 - sample_rate: 샘플레이트... 기본값은 48000
-- bit_depth: ㄹㅇ 말 그대로, 별로 중요한 요소 아님... 기본값은 0
+- bit_depth: ㄹㅇ 말 그대로, 별로 중요한 요소 아님... 기본값은 16
 
 
 
