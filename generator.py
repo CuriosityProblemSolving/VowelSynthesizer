@@ -3,7 +3,7 @@ import wave
 import os
 
 # === 파형 종류 선택 ===
-def generate_sin(sample_rate = 48000, duration = 10.0, freq = 1000, bit_depth = 16, dB = 0):
+def generate_sin(sample_rate = 48000, duration = 10.0, freqL = 260, freqR = 260, bit_depth = 16, dB = 0):
     # "sine", "square", "triangle", "sawtooth"
     WAVE_TYPE = "sine"
 
@@ -28,8 +28,10 @@ def generate_sin(sample_rate = 48000, duration = 10.0, freq = 1000, bit_depth = 
     t = np.linspace(0, duration, num_samples, endpoint=False)
 
     # 3) 파형 생성
+    freq = np.linspace(freqL, freqR, num_samples, endpoint=False)
+
     if WAVE_TYPE == "sine":
-        wave_data = amplitude * np.sin(2 * np.pi * freq * t)
+        wave_data = amplitude * np.sin(2 * np.pi * np.cumsum(freq) / sample_rate)
     elif WAVE_TYPE == "square":
         wave_data = amplitude * np.sign(np.sin(2 * np.pi * freq * t))
     elif WAVE_TYPE == "triangle":
