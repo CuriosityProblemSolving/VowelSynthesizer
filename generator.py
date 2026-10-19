@@ -3,7 +3,7 @@ import wave
 import os
 
 # === 파형 종류 선택 ===
-def generate_sin(sample_rate = 48000, duration = 10.0, freqL = 260, freqR = 260, bit_depth = 16, dB = 0):
+def generate_sin(sample_rate = 48000, duration = 10.0, freqL = 260, freqR = 260, bit_depth = 16, dB = np.zeros(4800)):
     # "sine", "square", "triangle", "sawtooth"
     WAVE_TYPE = "sine"
 
@@ -16,16 +16,19 @@ def generate_sin(sample_rate = 48000, duration = 10.0, freqL = 260, freqR = 260,
     # === 진폭을 dBFS 단위로 지정 ===
     # 예: "0dB", "-6dB", "-12dB"
     #amp_db = "0dB" #0이 안깨지는 최대인듯...
-
-    # 1) dB → 실제 amplitude 값 변환
-    max_val = 2**(bit_depth - 1) - 1  # 16-bit 최대치 32767
-    db_value = float(dB) - 10.0
-    #db_value = float(amp_db.replace("dB", ""))  # "–6dB" -> –6.0
-    amplitude = int(max_val * 10**(db_value / 20))
-
     # 2) 시간축 생성
     num_samples = int(sample_rate * duration)
     t = np.linspace(0, duration, num_samples, endpoint=False)
+
+    # 1) dB → 실제 amplitude 값 변환
+    max_val = 2**(bit_depth - 1) - 1  # 16-bit 최대치 32767
+    #db_value = float(dB) - 10.0
+    db_value = dB
+    #db_value = np.linspace(-12, 0, num_samples, endpoint=False)
+    amplitude = max_val * 10**(db_value / 20)
+    #print(db_value)
+
+
 
     # 3) 파형 생성
     freq = np.linspace(freqL, freqR, num_samples, endpoint=False)
@@ -65,6 +68,7 @@ def write_wav(filename, stereo_data, sample_rate = 48000, bit_depth = 16):
         wf.writeframes(stereo_data.tobytes())
 
     print("WAV 파일 저장 완료")
+
 # 6) WAV 파일 저장
 
 
