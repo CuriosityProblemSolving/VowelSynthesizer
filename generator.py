@@ -19,7 +19,7 @@ def generate_sin(sample_rate = 48000, duration = 10.0, freq = 1000, bit_depth = 
 
     # 1) dB → 실제 amplitude 값 변환
     max_val = 2**(bit_depth - 1) - 1  # 16-bit 최대치 32767
-    db_value = float(dB)
+    db_value = float(dB) - 10.0
     #db_value = float(amp_db.replace("dB", ""))  # "–6dB" -> –6.0
     amplitude = int(max_val * 10**(db_value / 20))
 
