@@ -32,9 +32,20 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             y = filternp
             new_filter = np.interp(np.linspace(0, 1, int(sample_rate*duration1)), x, y)
 
+            # 페이드 인 페이드 아웃
+            a = np.linspace(-30, 0, 500)
+            ac = np.zeros(int(sample_rate * duration1) - 500)
+            fadein = np.append(a, ac)
+
+            b = np.linspace(0, -30, 500)
+            bc = np.zeros(int(sample_rate * duration1) - 500)
+            fadeout = np.append(bc, b)
+
             #씌우기
-            audio = generator.generate_sin(duration = duration1, freqL=curfreq, freqR=nextfreq, dB=new_filter, sample_rate=sample_rate)
+            audio = generator.generate_sin(duration = duration1, freqL=curfreq, freqR=nextfreq, dB=new_filter+fadein+fadeout, sample_rate=sample_rate)
             output = output + audio
+
+
         return output
 
 
