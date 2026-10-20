@@ -11,8 +11,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
 
         #배음 몇개 만들어야 할지 계산
         min = f0[0] if f0[0] < f0[1] else f0[1]
-        #count = round(1560/min)
-        count = 6
+        count = round(1560/min)
 
 
         #배음 생성
