@@ -16,7 +16,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
 
 
         #배음 생성
-        output = generator.generate_sin(duration = duration1, freqL=0, freqR=0, dB=-100)
+        output = generator.generate_sin(duration = duration1, freqL=0, freqR=0, dB=-100, sample_rate=sample_rate)
         for i in range(1, count + 1):  #원래 range 퍼스트 1임. 잠깐 디버깅중
             curfreq = i * f0[0]
             nextfreq = i * f0[1]
@@ -34,7 +34,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             new_filter = np.interp(np.linspace(0, 1, int(sample_rate*duration1)), x, y)
 
             #씌우기
-            audio = generator.generate_sin(duration = duration1, freqL=curfreq, freqR=nextfreq, dB=new_filter)
+            audio = generator.generate_sin(duration = duration1, freqL=curfreq, freqR=nextfreq, dB=new_filter, sample_rate=sample_rate)
             output = output + audio
         return output
 
