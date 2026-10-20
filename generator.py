@@ -23,7 +23,7 @@ def generate_sin(sample_rate = 48000, duration = 10.0, freqL = 260, freqR = 260,
     # 1) dB → 실제 amplitude 값 변환
     max_val = 2**(bit_depth - 1) - 1  # 16-bit 최대치 32767
     #db_value = float(dB) - 10.0
-    db_value = dB
+    db_value = dB -12
     #db_value = np.linspace(-12, 0, num_samples, endpoint=False)
     amplitude = max_val * 10**(db_value / 20)
     #print(db_value)
