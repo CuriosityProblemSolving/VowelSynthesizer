@@ -53,5 +53,3 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
     elif vowel == 'ㅣ' or vowel == '이':
         print("hello, world!")
         return np.array([])
-
-    return None
