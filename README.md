@@ -1,5 +1,5 @@
-## generator.py -
-.generate_sin(sample_rate, duration, freq, bit_depth, dB) - 사인파 생성
+## generator.py
+.generate_sin(sample_rate, duration, freq, bit_depth, dB)
 - sample_rate: 샘플레이트... 기본값은 48000
 - duration: 지속시간(실수, 단위는 초)... 기본값은 10.0
 - freq: 주파수(Hz)... 기본값은 1000
@@ -8,14 +8,14 @@
 
 - numpy.ndarray형을 반환함
 
-.write_wav(filename, stereo_data, sample_rate, bit_depth) - wav파일 작성 + export
+.write_wav(filename, stereo_data, sample_rate, bit_depth)
 - filename: 스트링으로 받음. 파일 이름임. 뒤에 자동으로 .wav가 붙어서 저장됨
 - stereo_data: numpy.ndarray형이 들어감. 위의 .generate_sin()로 만든애가 들어갈 수 있음
 - sample_rate: 샘플레이트... 기본값은 48000
 - bit_depth: ㄹㅇ 말 그대로, 별로 중요한 요소 아님... 기본값은 16
 
 
-## dBFilter.py - 주파수 대역별 볼륨 EQ
+## dBFilter.py
 dBFilter??() 이런식으로 되어있는데, 저 ??에는 A, E, I, O, U, EU, EO 중 하나가 들어감
 
 각각은 말 그대로 각각의 주파수 대역 별 데시벨 정보를 담고 있음. [직접 오더시티로 해보고 만든 자료](data/학술제%20모음모듈에%20넣을%20데이터.xlsx) 참고해서 만들었음.
@@ -24,7 +24,7 @@ dBFilter??() 이런식으로 되어있는데, 저 ??에는 A, E, I, O, U, EU, EO
 ## gen_vowel.py
 아마 이제 최종 프로그램에서는 이친구를 많이 쓸거심
 
-.make_sound(vowel, f0, duration, sample_rate) - 실제 모음 소리 생성
+.make_sound(vowel, f0, duration, sample_rate)
 
 - vowel: 어떤 모음을 생성할지 넣으면 됨. 예를들어서 아면 '아' 또는 'ㅏ'를 넣으면 됨.
 - f0: 기음이 몇 Hz일지 쓰면 됨. 근데 얘 튜플임!!! 예를들어 (260, 520)이면 지속시간동안 260Hz에서 520Hz로 선형으로 변화함
