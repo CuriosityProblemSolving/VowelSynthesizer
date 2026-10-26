@@ -88,7 +88,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             output = output + audio
         
         
-            return output
+        return output
 
 
 
@@ -133,7 +133,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             output = output + audio
         
         
-            return output
+        return output
 
 
     elif vowel == 'ㅗ' or vowel == '오':
@@ -177,7 +177,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
                 output = output + audio
             
             
-                return output
+            return output
     
     
     
@@ -222,7 +222,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             output = output + audio
         
         
-            return output
+        return output
 
 
     elif vowel == 'ㅡ' or vowel == '으':
@@ -266,7 +266,7 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
                 output = output + audio
             
             
-                return output
+            return output
     
     
     
@@ -311,6 +311,6 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             output = output + audio
         
         
-            return output
+        return output
 
     return None
