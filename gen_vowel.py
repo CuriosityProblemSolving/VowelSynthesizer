@@ -1,7 +1,5 @@
 from VowelSynthesizer import generator, dBFilter
 import numpy as np
-import wave
-import os
 
 def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은 튜플, duration은 float
     if vowel == 'ㅏ' or vowel == '아':
@@ -11,12 +9,12 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
 
         #배음 몇개 만들어야 할지 계산
         min = f0[0] if f0[0] < f0[1] else f0[1]
-        count = round(1560/min)
+        count = round(1560/min) # round(a / min)의 a에는 그 모음 배음의 최대 주파수를 적음 ('아'는 5배음이 끝이라 1560)
 
 
         #배음 생성
         output = generator.generate_sin(duration = duration1, freqL=0, freqR=0, dB=-100, sample_rate=sample_rate)
-        for i in range(1, count + 1):  #원래 range 퍼스트 1임. 잠깐 디버깅중
+        for i in range(1, count + 1):
             curfreq = i * f0[0]
             nextfreq = i * f0[1]
 
@@ -36,12 +34,11 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
             a = np.linspace(-30, 0, 500)
             ac = np.zeros(int(sample_rate * duration1) - 500)
             fadein = np.append(a, ac)
-
             b = np.linspace(0, -30, 500)
             bc = np.zeros(int(sample_rate * duration1) - 500)
             fadeout = np.append(bc, b)
 
-            #씌우기
+            # 씌우기
             audio = generator.generate_sin(duration = duration1, freqL=curfreq, freqR=nextfreq, dB=new_filter+fadein+fadeout, sample_rate=sample_rate)
             output = output + audio
 
@@ -53,3 +50,5 @@ def make_sound(vowel, f0, duration1, sample_rate = 48000): #vowel은 char, f0은
     elif vowel == 'ㅣ' or vowel == '이':
         print("hello, world!")
         return np.array([])
+
+    return None
